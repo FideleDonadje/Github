@@ -1,0 +1,97 @@
+package a3;
+
+import java.util.Random;
+
+public class Mouse extends Animal 
+{
+	private String status; 
+	public Mouse(String name)
+	{
+		super(name, null);
+		this.status = "mouse alive";
+		
+	}
+	public String getStatus()
+	{
+		return status;
+	}
+	
+	public void setStatus(String status)
+	{
+		this.status = status ; 
+	}
+	public void move ()
+	{
+		
+		int x = (int)this.position.getLocation().getX();
+		int y = (int)this.position.getLocation().getY();
+		int direction = this.rng.nextInt(4);
+	
+			switch(direction)
+			{
+			    case 0 ://North
+			    	if(((y+1) == 6) && (x%2==0))
+			    	{
+			    		setStatus("mouse drowned");
+			    		System.out.print(this.getLocation());
+			    	}
+			    	else if ((x%2 == 0) &&((y+1)%2==0))
+			    	{
+			    		setStatus("mouse escaped");
+			    	
+			    	}
+			    	else
+			    	{
+			    		this.position.setLocation(x, y+1);
+			    	}
+			       break; 
+			    case 1 ://South
+			    	if ((y-1) == 0)
+			    	{
+			    		setStatus("mouse drowned");
+			    	}
+			    	else if ((x%2 == 0) &&((y-1)%2==0))
+			    	{
+			    		setStatus("mouse escaped");
+			    	
+			    	}
+			    	else
+			    	{
+			    		this.position.setLocation(x, y-1);
+			    	}
+			    	break; 
+			    case 2 ://East
+			    	if ((x+1) == 6)
+			    	{
+			    		setStatus("mouse drowned");
+			    	}
+			    	else if (((x+1)%2 == 0) &&(y%2==0))
+			    	{
+			    		setStatus("mouse escaped");
+			    		
+			    	}
+			    	else
+			    	{
+			    		this.position.setLocation(x+1, y);
+			    	}
+				       break; 
+			    case 3 ://West
+			    	if ((x-1) == 0)
+			    	{
+			    		setStatus("mouse drowned");
+			    	}
+			    	else if (((x-1)%2 == 0) &&(y%2==0))
+			    	{
+			    		setStatus("mouse escaped");
+			    		
+			    	}
+			    	else
+			    	{
+			    		this.position.setLocation(x-1, y);
+			    	}
+				       break; 
+			    
+			    default : 
+			}
+		}
+}

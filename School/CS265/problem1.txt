@@ -1,0 +1,12 @@
+#!/bin/bash
+# problem1.bash - Shows the # of directories and the # of messages sent
+#
+# Fidele Donadje 
+#	10/17
+# 
+# 
+#Path will contain the path of the directory where all the message are held.It can be changed #later if needed 
+Path = "/home/kschmidt/public_html/Files/DrMathArchive"
+ls | wc -l;
+find * -type f | wc -l;
+

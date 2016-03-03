@@ -1,0 +1,25 @@
+<project default='test' basedir='.'>
+
+
+<target name='test' depends='compile'>
+	<junit>
+<classpath>
+	<pathelement path="${classpath}"/>
+	<pathelement location="usr/share/java/junit.jar" />
+</classpath>
+		<formatter type='plain' />
+		<test name='gIntTest'	/>
+	</junit>
+</target>
+
+<target name='compile' depends='gInt'>
+	<java classname='gIntTest'>
+		<classpath path='./'/>
+	</java>
+</target>
+
+<target name='gInt'>
+	<javac srcdir='./' includes='gInt.java gIntTest.java'/>
+</target>
+</project>
+

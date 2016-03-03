@@ -1,0 +1,34 @@
+1.1 We can use eof_true, eof_false and not_eof instead
+1.2 int issmaller(char *s ,char *t){
+	if (strcmp(s,t)<1)
+		return 1;
+	else
+		return 0;
+1.3 It is difficult to read those variables aloud. The names are not readable and don't make sense 
+1.4 if ((c!='y' ) && (c !='Y'))
+      if (length < BUFSIZE)
+            length=length;
+        else
+            length =BUFSIZE
+      if (flag == true)
+       if (*line ='"')
+	quote = 1;
+else
+	quote = 0;
+if ((val&1))
+	b=1;
+else
+	b=0;
+
+1.5 ch and val sre modified in the function so we don't know what value will be printed
+
+1.6 we have 2 2 and 2 1
+      
+1.7
+   if (retval != SUCCESS) 
+      return (retval); 
+   else
+      return SUCCESS; 
+   for (k = 0; k++ < 5; x += dx) 
+   scanf ("%l f" , &dx) ; 
+1.8

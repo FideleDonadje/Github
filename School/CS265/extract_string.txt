@@ -1,0 +1,5 @@
+Parsing testname = David.Augenblick
+
+fname=${testname%%.*} David
+
+lname=${testname#*.}

@@ -1,0 +1,76 @@
+Fidele Donadje
+CS283 002
+
+HW1 : Anagram Solver
+
+
+		DESCRIPTION
+	The goal of that program is to find all the anagrams of a word using 
+the appropriate data structures. To do so, We will use a hash table.
+each integer in that table will match to a list of linked lists. Each
+linked list will be a word which sum of values of the letter correspond 
+to a hash value in the table.
+		
+		APPROACH
+	We first create the table using a file(words.txt in our case). To do so,
+we first lowercase all the letter, and get the max hash value in the table.
+The maximum hash value of the table will be the size of the hash table.
+To hash the word, we first lowercase all of his letters, sum the ascii values 
+of all his letters and multiply it by it length. We divide that number by 
+the maximum number of buckets(1000 is good on tux but I got 
+segmentation error on tools like nitrous.io)  
+
+
+to run the program
+gcc - o anagram anagram.c -I
+./anagram [Filename] [word]
+
+
+ 
+		STRUCTURES USED
+		
+struct LinkNode
+{
+  char * word;
+  struct LinkNode * next;
+}
+Each node will have a word and point to the next word
+
+struct HashTable
+{
+  struct LinkNode nodeHeads[numHashBuckets +1];
+}
+The hash table will be a table of nodes,each index being a hash number
+	
+
+		FUNCTIONS 
+		
+	void constructHashTable(FILE * file); //Construct the hash table
+
+int hash(char * word);//Lower case the word 
+
+int ascii_sum(char * word);//Return the ascii sum for a word
+
+int hash_base_max(char * path);//Find the 
+
+void printAnagrams(char * word);//Print anagrams for a word
+
+bool isAnagram(char * input, char * toCheck);//Check if a word is an anagram of the other
+
+
+struct HashTable table;
+
+void printHashTable(struct HashTable * table);// To print the hash table 
+
+
+		RESULTS
+
+ The program did work
+ 
+		COMMENTS 
+		
+It is a very difficult assignment. I was proficient in c with strings and pointers
+when I learnt it in my country but I needed a lot of help for that assignment and 
+there are stuff I really have to spend time on. linked list were fine but I got a 
+bit confused with the hash table (I know the concept but it is my first implementation)
+The hashing was somewhat complicated 

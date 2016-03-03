@@ -1,0 +1,44 @@
+Regular expression lab
+
+
+Q1.1 : egrep 'the' bright_side_of_life
+Q1.2: egrep '\<the\>' bright_side_of_life
+Q1.3: egrep '\<just\>' bright_side_of_life
+Q1.4: egrep '[jJ]ust' bright_side_of_life
+Q1.5: egrep '^[jJ]ust' bright_side_of_life
+Q1.6: egrep ^'\<bad\>|\<mad\>' bright_side_of_life
+Q1.7:  egrep ^'\<death\>|\<breath\>' bright_side_of_life
+Q1.8:  egrep 'you[.,]$' bright_side_of_life
+Q1.9: egrep '^\s' bright_side_of_life
+Q1.10 : egrep '^$' bright_side_of_life
+Q11:egrep '^$' bright_side_of_life |wc -l
+It will be 10 lines 
+
+
+Git Lab
+
+Q2.1: We use git checkout -- lab3 or git reset 
+Q2.2: You can check the log file with git log
+commit 1c3cba6674847e35b70d02bd8472fe705589ba03
+Author: Fidele Donadje <fd96@cs.drexel.edu>
+Date:   Mon Oct 13 03:37:52 2014 -0400
+
+    deleted lab sheet
+
+commit 825f82abe0a428b0bb640d1a084077ff25ad6e5a
+Author: Fidele Donadje <fd96@cs.drexel.edu>
+Date:   Mon Oct 13 03:34:16 2014 -0400
+
+    submitting lab sheet
+
+commit 67796d50c9b225a7fb1cec9e052d3cf79cb99fbd
+Author: Fidele Donadje <fd96@cs.drexel.edu>
+Date:   Mon Oct 13 03:26:12 2014 -0400
+
+        deleted:    lab3
+
+commit 5af8e706049ae7f72e5bd74fd329ae69451d2197
+Author: Fidele Donadje <fd96@cs.drexel.edu>
+Date:   Mon Oct 13 03:16:54 2014 -0400
+
+    DONE !

@@ -1,0 +1,31 @@
+package a3;
+
+import java.awt.Point;
+import java.util.*;
+
+public abstract class Animal 
+{
+	protected Point position;
+	private String name;
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public Point getLocation()
+	{
+		return position;
+	}
+	
+	void setStartLocation()
+	{
+		position =new Point();
+	}
+	
+	void move()
+	{
+		
+	}
+	
+}

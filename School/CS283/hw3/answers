@@ -1,0 +1,58 @@
+Fidele Donadje 
+CS283 002
+
+QUESTION B 
+
+request header: GET /home_files/courseInfo.js HTTP/1.1
+Host: 129.25.9.123:1234
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML,
+like Gecko) Chrome/40.0.2214.111 Safari/537.36
+Referer: http://129.25.9.123:1234/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8,fr;q=0.6
+Cookie: __utmt=1;
+__utma=157717818.2014005957.1423855567.1423855567.1423855567.1;
+__utmb=157717818.3.10.1423855567; __utmc=157717818;
+__utmz=157717818.1423855567.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+
+
+
+|utmccn=(direct)|utmcmd=(none)
+
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML,
+like Gecko) Chrome/40.0.2214.111 Safari/537.36
+Referer: http://129.25.9.123:1234/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8,fr;q=0.6
+Cookie: __utmt=1;
+__utma=157717818.2014005957.1423855567.1423855567.1423855567.1;
+__utmb=157717818.3.10.1423855567; __utmc=157717818;
+__utmz=157717818.1423855567.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+
+request header: GET /home_files/ga.js HTTP/1.1
+Host: 129.25.9.123:1234
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML,
+like Gecko) Chrome/40.0.2214.111 Safari/537.36
+Referer: http://129.25.9.123:1234/
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8,fr;q=0.6
+Cookie: __utmt=1;
+__utma=157717818.2014005957.1423855567.1423855567.1423855567.1;
+__utmb=157717818.3.10.1423855567; __utmc=157717818;
+__utmz=157717818.1423855567.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+
+one)
+
+QUESTION C
+
+it is using HTTP/1.1
+
+QUESTION 11.7
+
+Changes made in tiny but not tested 

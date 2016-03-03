@@ -1,0 +1,35 @@
+Q 1 What happened when you ran bug3? Use ls -ot, see if there are any new files in your directory.
+There is a segment fault error, and a core file is created
+
+Q 2 In which function did it bomb?
+the function inTable()
+
+Q 3 For each, below, record what the problem was, and you how fixed it.
+
+bug1.c: The problem is in scanf because we pass the value n into it not the address of n. Change n to &n will fix the problem.
+
+bug2.c: Swap %d and %l will fix the problem. 
+
+bug3.c: bug3.c: at line 49, we increment numlines before inserting the string.
+Thus,the st array start at index 1 instead of index 0. 
+Fix by moving ++numLines below st[numLines] = strdup(buff);
+
+avg.c: Use &n for scanf instead of n. Another problem is assert in main should be assert(n<6) because 5 is a valid number in this
+case.
+
+driverBug.c quicksortBug.c: The bug is that in the quicksort function, if
+the list is given in already sorted order. The function call
+quicksort(v+last-1, n-last-1) will cause error since it means we will use v
++ 0 - 1 = v - 1. This violate memory does not belong to v. We can pu assert
+to make sure that last is always > 0 if v happens to be in the first call.
+
+Q 4 Why can't the compiler catch this? You can uncover the problem by looking at a stack trace from when the program crashed (see the lab on how to do this).
+
+Because the function use void pointers, thus, the compiler does not catch the error.
+
+Q 5 What happens if you are using qsort to sort integers and accidently pass the string comparison function?
+
+It still work but the result will be sorted incorrectly.
+
+
+

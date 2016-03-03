@@ -1,0 +1,16 @@
+Q1: The output is ./CS265/lab2/breadIsDangerous.txt
+Q2: The command will be find -name *.bash
+Q3: The output wil be 
+./CS265/lab1/hello.bash
+./tmp/gotMe.bash
+Q4: Number of characters : 2538 breadIsDangerous.txt
+        Number of words: 421 breadIsDangerous.txt
+        Number of lines : 73 breadIsDangerous.txt
+Q5: grep "the" breadIsDangerous.txt | wc -l
+Q6: we have a file named spellExample.bak and spellExample
+Q7:the text "An extra Line" was added to spellExample.bak. The script 
+Q8:Nothing
+Q9: $? returns the value of the last coommand executed. It will be 0 if the function return a result. if not, it will be a number different than 0
+
+
+

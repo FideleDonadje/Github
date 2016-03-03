@@ -1,0 +1,58 @@
+package a3;
+
+import java.util.Random;
+
+public class Chase {
+	
+	public Chase()
+	{
+		
+	}
+	
+	public static String playGame()
+	{
+		Random rng= new Random();
+		Cat Tom = new Cat("Tom");
+		Tom.setRng(rng);
+		
+		Mouse Jerry = new Mouse ("Jerry");
+		Jerry.setRng(rng);
+		do 
+		{
+			Tom.setStartLocation();
+			Jerry.setStartLocation();
+		}while (Tom.getLocation() == Jerry.getLocation() );
+		
+		while (Jerry.getStatus() == "mouse alive")
+		{
+			Jerry.move();
+			Tom.move();
+			
+			int x1 = (int)Tom.getLocation().getX();
+			int y1 = (int)Tom.getLocation().getY();
+			
+			int x2 = (int)Jerry.getLocation().getX();
+			int y2 = (int)Jerry.getLocation().getY();
+			if ((x1==x2)&&(y1==y2) )
+			{
+				Jerry.setStatus("cat had a snack");
+				System.out.print("YESSSSSSSSSSSSSSSSSSS!!");
+				System.out.print(x1);
+				System.out.println(y1);
+				System.out.print(x2);
+				System.out.print(y2);
+			}
+		}
+		
+		return Jerry.getStatus();
+	}
+	public static void main(String[] args) 
+	{
+		for(int x = 0; x < 30; x = x+1)
+		{
+			Chase Game= new Chase();
+			System.out.println(Chase.playGame());
+		}
+	}
+
+}

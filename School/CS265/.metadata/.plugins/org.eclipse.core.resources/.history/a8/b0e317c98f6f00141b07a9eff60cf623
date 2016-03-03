@@ -1,0 +1,79 @@
+package a3;
+
+import java.util.Random;
+
+public class Chase {
+	
+	public Chase()
+	{
+		
+	}
+	
+	public static String playGame()
+	{
+		Random rng= new Random();
+		Cat Tom = new Cat("Tom");
+		Tom.setRng(rng);
+		
+		Mouse Jerry = new Mouse ("Jerry");
+		Jerry.setRng(rng);
+		// We make sure that the mouse and the cat don't start at the same position 
+		do 
+		{
+			Tom.setStartLocation();
+			Jerry.setStartLocation();
+		}while (Tom.getLocation() == Jerry.getLocation() );
+		
+		while (Jerry.getStatus() == "mouse alive")
+		{
+			Jerry.move();
+			Tom.move();
+			
+			int x1 = (int)Tom.getLocation().getX();
+			int y1 = (int)Tom.getLocation().getY();
+			
+			int x2 = (int)Jerry.getLocation().getX();
+			int y2 = (int)Jerry.getLocation().getY();
+			
+			if ((x1==x2)&&(y1==y2) )
+			{
+				Jerry.setStatus("cat had a snack");
+	
+			}
+		}
+		
+		return Jerry.getStatus();
+	}
+	public static void main(String[] args) 
+	{	 double mouse_eaten=0;
+		 double mouse_drowned=0;
+		 double mouse_escaped=0;
+		 
+		for(int x = 0; x < 30; x = x+1)
+		{
+			System.out.println(Chase.playGame());
+			switch (Chase.playGame())
+			{
+				case "mouse drowned":
+					mouse_drowned= mouse_drowned+1;
+				break;
+				
+				case "mouse escaped":
+					mouse_escaped= mouse_escaped+1;
+				break;
+				
+				case "cat had a snack":
+					mouse_eaten= mouse_eaten+1;
+				break;
+			}
+		}
+		System.out.println("");
+		System.out.printf("Pourcentage: ");
+		System.out.printf("Escaped : %04f  ",(mouse_escaped/30)*100);
+		System.out.printf("Drowned : %f    ",(mouse_drowned/30)*100);
+		System.out.printf("Eaten :   %f    ",(mouse_eaten/30)*100);
+	}
+	
+	
+
+}

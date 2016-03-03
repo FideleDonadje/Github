@@ -1,0 +1,60 @@
+package a3;
+
+import java.awt.Point;
+import java.util.Random;
+
+public abstract class Animal 
+{
+	protected Point position;
+	private String name;
+	private Random rng;
+	
+	public Animal (String name , Random rng)
+	{
+		this.name = name;
+		this.position = new Point();
+		this.rng = rng;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public Point getLocation()
+	{
+		return position;
+	}
+	
+	void setStartLocation()
+	{
+		this.position =new Point();
+		this.position.setLocation(rng.nextInt(5)+1,rng.nextInt(5)+1);
+		
+	}
+	
+	void move()
+	{
+		int x = (int)this.position.getLocation().getX();
+		int y = (int)this.position.getLocation().getY();
+		int direction = rng.nextInt(4);
+		switch(direction)
+		{
+		    case 0 ://North
+		    	this.position.setLocation(x, y+1); 
+		       break; 
+		    case 1 ://South
+		    	this.position.setLocation(x, y-1);
+		       break; 
+		    case 2 ://East
+		    	this.position.setLocation(x+1, y);
+			       break; 
+		    case 3 ://West
+		    	this.position.setLocation(x-1, y);
+			       break; 
+		    
+		    default : 
+		}
+	}
+	
+}
