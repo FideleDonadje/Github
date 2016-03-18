@@ -1,0 +1,143 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Scanner;
+
+public class Kwic {
+	String filename,stopword;
+	String[] arrayLine;
+	String[] list_stop_words;
+	Hashtable<String, String> shiftedLines = new Hashtable<String, String>() ;
+	
+	
+	public void Input()
+	{
+			String filename;
+			System.out.println("Enter the file name for the KWIC input :");
+		    // Scanner for user input
+		    Scanner user = new Scanner( System.in ); 
+		    filename = user.nextLine();
+			this.filename =filename;
+
+			System.out.println("Enter the file name for the stop words :(Leave empty if you don't want to use it");
+		    // Scanner for user input
+		    filename = user.nextLine();
+		    if (filename.equals(""))
+		    {
+		    	this.stopword= "";
+		    }
+		    else
+		    {
+		    	this.stopword = filename;
+		    }
+		
+				StringBuffer stringBuffer = new StringBuffer();
+				try {
+					File file = new File(this.filename);
+					FileReader fileReader = new FileReader(file);
+					BufferedReader bufferedReader = new BufferedReader(fileReader);
+					String line;
+					while ((line = bufferedReader.readLine()) != null) 
+					{
+						stringBuffer.append(line);
+					}
+					fileReader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
+			//ParseData takes a string buffer and return an array of string
+			//The data is parse using delimiters and split()
+			//Each line is ended by \n, . or .\n so we use (\\\\n|\\\\t)|(\\.\\\\n)|\\.
+			
+				//We convert the Stringbuffer to a String so we can use string methods 
+				//to parse each line 
+				String rawData = stringBuffer.toString();
+				String delimiters = "(\\\\n|\\\\t)|(\\.\\\\n)|\\.";
+				//We apply the different delimiters: .(\\. in regular expression)
+				//return to the next line( \n) and . and return to the next line(\\.\n)
+				String[] parseData = rawData.split(delimiters);
+				//It returns an array of strings with each lines correctly split
+				this.arrayLine = parseData;
+			//Method to read the stop words files. Similar to the method used to read files except
+			//that we parse them as we read them since we know the layout of the file 
+			{
+				stringBuffer = new StringBuffer();
+				String[] words = null;
+				if(!this.stopword.equals(""))
+				{
+				
+				try {
+					File file = new File(this.stopword);
+					FileReader fileReader = new FileReader(file);
+					BufferedReader bufferedReader = new BufferedReader(fileReader);
+					String line;
+					while ((line = bufferedReader.readLine()) != null) 
+					{
+						stringBuffer.append(line);
+						stringBuffer.append("\n");
+					}
+					words = stringBuffer.toString().split("\n");
+					fileReader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				}
+				this.list_stop_words = words;
+				
+			}
+		    
+		}
+
+	//This class will handle the circular shift of the file 
+	//Using several methods 
+	public void CircularShift() {
+			
+		//ShiftRight completes the circular shift by using addRight and addLeft
+			for (int i =0; i< arrayLine.length; i++)
+			{
+				for (int j=0; j < arrayLine[i].split(" ").length; j++)
+				{
+					String[] words = arrayLine[i].split(" ");
+					//String shift = this.addRight(words, j) + " " + this.addLeft(words, j);
+					
+					String right="";
+					for (int l=j+1; i< words.length; l++)
+					{
+						right = right +" "+ words[i];
+					}
+					
+					String left="";
+					for (int m=0; i< j; m++)
+					{
+						left = left +" "+ words[i];
+					}
+					
+					String shift = right + left;
+					
+					
+					//System.out.println("The key is :" + words[j]+ " "+ " The value is :"+ shift);
+					shiftedLines.put(words[j], shift);
+				}
+				
+			}
+		}
+		
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		
+		Kwic kwic = new Kwic();
+		
+		kwic.Input();
+		//kwic.CircularShift();
+		System.out.println("Filename is " +kwic.filename);
+		System.out.println("stopword is " +kwic.stopword);
+		System.out.println("array is " +kwic.shiftedLines);
+		
+
+	}
+
+}

@@ -1,0 +1,45 @@
+Q1: When bash is invoked as an interactive login shell or a non-interactive shell, it will read .bash_profile
+    When an interactive shell that is not a login shell is started,bash reads and executes commands from .bashr
+Q2:Done
+Q3: I see all the file in the current directory listed on each row
+Q4: chmod 644 some_file will give you read and write on some_file, all other
+have only read 
+Q5: chmod 755 some_file will give you all the permission on some_file, read
+and excecute access to everyone else
+Q6: Yes I can read the funny file
+Q7: Yes I can read my hello.bash file
+Q8: No I cannot excecute my Hello.bash file 
+Q9: I can use chmod 744 to give myself all permission on the file so I can
+execute it or use 
+	chmod u+x to give me execute permission
+Q10: I cannot save the changes because the file open on read only mode.
+Q11: ls * displays all files
+	ls a* displays all the files starting with a : annoy and annoy.cc
+	ls *m* diplays files with contains m at least
+once:itemList,ItemList-2cols and TelecomTruths 
+	ls anno? displays files wich name starts with anno and ends with one
+letter: annoy
+	ls annoy? display files which name starts with annoy and ends with one
+letter: No such file 
+Q12: The file was created but has only "a" in its name. We can still open it
+by using vi a space
+Q13:	echo Is a<b? : no such file or directory
+	echo "Is a<b?": Is a<b
+	echo "\$USER is $USER" : $USER is fd96
+	echo '\$USER is $USER' : \$USER is $USER
+	echo "Today is `date`":Today is Sun Sep 28 21:46:22 EDT 2014
+	echo "Today is $(date)":Today is Sun Sep 28 21:46:22 EDT 2014
+	echo 'Today is `date`': Today is date
+	echo -e "Files that start w/e:\n`ls e*`":ls: cannot access e*: No such
+file or directory
+        Files that start w/e:
+
+Q14: sort itemList-2cols order the elements by using the first character and
+sort -n itemList-2cols list elements by
+	using the first string numerical value
+Q15: sort -nr itemList-2cols
+Q16: We have instead lab1.tar.gz
+Q17: The file is gone 
+Q18: grep  "Vacation" /home/fd96/CS265/lab1
+Q19: find -name "lab1"
+
