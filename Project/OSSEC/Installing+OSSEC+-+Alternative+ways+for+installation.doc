@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <!-- MS Word on Windows doesn't realise the encoding is UTF-8 unless this meta tag is present -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <base href="https://jira.net.isc.upenn.edu/confluence" />
+        <title>Installing OSSEC - Alternative ways for installation</title>
+        <style>
+            body, p, td, table, tr, .bodytext, .stepfield {
+	            font-family: Arial, Helvetica, FreeSans, sans-serif;
+            }
+            .panel {
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid #999;
+                background-color: #f0f0f0;
+            }
+            .noteMacro { border-style: solid; border-width: 1px; border-color: #F0C000; background-color: #FFFFCE; text-align:left;}
+            .warningMacro { border-style: solid; border-width: 1px; border-color: #c00; background-color: #fcc; text-align:left;}
+            .infoMacro { border-style: solid; border-width: 1px; border-color: #69c; background-color: #D8E4F1; text-align:left;}
+            .tipMacro { border-style: solid; border-width: 1px; border-color: #090; background-color: #dfd; text-align:left;}
+            .informationMacroPadding { padding: 5px 0 0 5px; }
+
+            table.infoMacro td, table.warningMacro td, table.tipMacro td, table.noteMacro td, table.sectionMacro td {
+                border: none;
+            }
+
+            .grid {
+                margin: 2px 0px 5px 0px;
+                border-collapse: collapse;
+            }
+            .grid th  {
+                border: 1px solid #ccc;
+                padding: 2px 4px 2px 4px;
+                background: #f0f0f0;
+                text-align: center;
+            }
+            .grid td  {
+                border: 1px solid #ccc;
+                padding: 3px 4px 3px 4px;
+            }            
+        </style>
+    </head>
+
+    <body style="background-color: white; padding: 10px;">
+        <h1>Installing OSSEC - Alternative ways for installation</h1>
+        <h1><a name="InstallingOSSEC-Alternativewaysforinstallation-OSSECInstallation"></a><ins>OSSEC Installation</ins></h1>
+
+<p>This document explains how to install OSSEC using the different methods.</p>
+
+<p>There are currently 3 ways to install OSSEC.</p>
+<ul>
+	<li>Package installation</li>
+	<li>Manual installation</li>
+	<li>Unattended installation</li>
+</ul>
+
+
+<h4><a name="InstallingOSSEC-Alternativewaysforinstallation-Packageinstallation"></a><ins>Package installation</ins></h4>
+
+<p>For the package installation, you need to add a third party repository since OSSEC is not available in the standard distribution (Debian/Ubuntu and Redhat/CentOS).</p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">For Centos 6 and 7
+
+# wget -q -O - https://www.atomicorp.com/installers/atomic |sh
+(if you get "sudo: wget: command not foundsudo: wget: command not found", install wget first by running # sudo yum install -y wget)
+
+# sudo yum install -y ossec-hids ossec-hids-server (or ossec-hids-client for the agent)</pre>
+		</div>
+</div></div>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">For RHEL 6 and 7
+
+# wget https://www.atomicorp.com/installers/atomic &amp;&amp; sudo chmod +x atomic &amp;&amp; sudo ./atomic
+(if you get "sudo: wget: command not foundsudo: wget: command not found", install wget first by running # sudo yum install -y wget)
+
+# sudo yum install -y ossec-hids ossec-hids-server (or ossec-hids-client for the agent)</pre>
+		</div>
+</div></div>
+
+<p>After the installation is complete, OSSEC will be in /var/ossec.</p>
+
+<p>You will need to open UDP port 1514 on the server to allow the server/agent to communicate.</p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">For Centos 6 and 7
+
+#sudo firewall-cmd --zone=public --add-port=1514/udp --permanent 
+#sudo firewall-cmd --reload
+
+(if you get sudo: firewall-cmd: command not found, install firewalld first by running # sudo yum install -y firewalld)</pre>
+		</div>
+</div></div>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">For Redhat 6 and 7
+
+#sudo iptables -A INPUT -p udp -m udp --sport 1514 -j ACCEPT
+#sudo service iptables save
+#sudo iptables -A OUTPUT -p udp -m udp --dport 1514 -j ACCEPT
+#sudo service iptables save
+#sudo service iptables restart</pre>
+		</div>
+</div></div>
+<p>After you finish the installation, go in /var/ossec/etc and open ossec.conf. Inside look for the line &lt;server-ip&gt;……&lt;/server-ip&gt; and put the address of your server between the tags and save the file*.&#42;</p>
+
+
+<p>You can then start OSSEC by running</p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># sudo /var/ossec/bin/ossec-control start</pre>
+		</div>
+</div></div>
+
+<h4><a name="InstallingOSSEC-Alternativewaysforinstallation-ManualInstallation"></a><ins>Manual Installation</ins></h4>
+
+<p>You can download the latest version of OSSEC at <a href="http://www.ossec.net/">www.ossec.net</a> and install it. It is an interactive installation that allows you to configure OSSEC during the installation.</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># sudo wget http://www.ossec.net/files/ossec-hids-2.7.tar.gz*
+(if you get "sudo: wget: command not foundsudo: wget: command not found", install wget first by running # sudo yum install -y wget)
+
+# tar -xvzf ossec-hids-2.7.tar.gz; cd ossec-hids-2.7
+
+# ./install.sh</pre>
+		</div>
+</div></div>
+
+<p>After the installation is complete, OSSEC will be in /var/ossec.</p>
+
+<p>You will need to open UDP port 1514 in the firewall to allow the server/agent to communicate.</p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">#sudo firewall-cmd --zone=public --add-port=1514/udp --permanent 
+#sudo firewall-cmd --reload</pre>
+		</div>
+</div></div>
+
+<p>You can then start OSSEC by running</p>
+
+<p><b>&#35;</b> <b>/var/ossec/bin/ossec-control start</b>
+<br class="atl-forced-newline" /></p>
+
+<h4><a name="InstallingOSSEC-Alternativewaysforinstallation-Unattendedinstallation"></a><ins>Unattended installation</ins></h4>
+
+<p>OSSEC has the capability to be compiled and installed without the interactivity of&nbsp;install.sh. The install script can collect the answers to its questions from the&nbsp;etc/preloaded-vars.conf&nbsp;configuration file. You follow all the steps of the manual installation but you will just edit the preloaded-vars.conf configuration file before running install.sh</p>
+
+<p><a href="http://ossec-docs.readthedocs.io/en/latest/manual/installation/install-source-unattended.html">&#104;ttp://ossec-docs.readthedocs.io/en/latest/manual/installation/install-source-unattended.html</a></p>
+
+<p>After the installation is complete, OSSEC will be in /var/ossec.</p>
+
+<p>You will need to open UDP port 1514 in the firewall to allow the server to communicate with the agents.</p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">#sudo firewall-cmd --zone=public --add-port=1514/udp --permanent 
+#sudo firewall-cmd --reload</pre>
+		</div>
+</div></div>
+
+<p>You can then start OSSEC by running</p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># /var/ossec/bin/ossec-control start</pre>
+		</div>
+</div></div>
+    </body>
+</html>

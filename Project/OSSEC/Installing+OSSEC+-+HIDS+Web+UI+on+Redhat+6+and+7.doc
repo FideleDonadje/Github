@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <!-- MS Word on Windows doesn't realise the encoding is UTF-8 unless this meta tag is present -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <base href="https://jira.net.isc.upenn.edu/confluence" />
+        <title>Installing OSSEC - HIDS Web UI on Redhat 6 and 7</title>
+        <style>
+            body, p, td, table, tr, .bodytext, .stepfield {
+	            font-family: Arial, Helvetica, FreeSans, sans-serif;
+            }
+            .panel {
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid #999;
+                background-color: #f0f0f0;
+            }
+            .noteMacro { border-style: solid; border-width: 1px; border-color: #F0C000; background-color: #FFFFCE; text-align:left;}
+            .warningMacro { border-style: solid; border-width: 1px; border-color: #c00; background-color: #fcc; text-align:left;}
+            .infoMacro { border-style: solid; border-width: 1px; border-color: #69c; background-color: #D8E4F1; text-align:left;}
+            .tipMacro { border-style: solid; border-width: 1px; border-color: #090; background-color: #dfd; text-align:left;}
+            .informationMacroPadding { padding: 5px 0 0 5px; }
+
+            table.infoMacro td, table.warningMacro td, table.tipMacro td, table.noteMacro td, table.sectionMacro td {
+                border: none;
+            }
+
+            .grid {
+                margin: 2px 0px 5px 0px;
+                border-collapse: collapse;
+            }
+            .grid th  {
+                border: 1px solid #ccc;
+                padding: 2px 4px 2px 4px;
+                background: #f0f0f0;
+                text-align: center;
+            }
+            .grid td  {
+                border: 1px solid #ccc;
+                padding: 3px 4px 3px 4px;
+            }            
+        </style>
+    </head>
+
+    <body style="background-color: white; padding: 10px;">
+        <h1>Installing OSSEC - HIDS Web UI on Redhat 6 and 7</h1>
+        <p>Ossec Web User Interface offers a front end interface that allow the administrator to see logs and information about the agents.</p>
+
+<p>Prerequisites</p>
+<ul>
+	<li>Apache with PHP</li>
+	<li>Ossec Server (&lt;=2.8) already installed&nbsp;</li>
+</ul>
+
+
+<p>&nbsp; &nbsp; &nbsp;1&#45;<b>Download the package</b></p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">#sudo wget https://github.com/ossec/ossec-wui/archive/0.9.tar.gz</pre>
+		</div>
+</div></div>
+<p><b>&nbsp; &nbsp; &nbsp;2-Decompress the package</b></p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># sudo tar xvf 0.9.tar.gz</pre>
+		</div>
+</div></div>
+<p><b>&nbsp; &nbsp; &nbsp;3-Move the folder to the www folder</b>&nbsp;</p>
+
+<p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># sudo mv ossec-wui-0.9 /var/www/html/ossec-wui</pre>
+		</div>
+</div></div>*&nbsp; &nbsp; &nbsp;4&#45; Run the setup*</p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">#cd /var/www/html/ossec-wui
+
+#./setup.sh</pre>
+		</div>
+</div></div>
+
+<p><b>&nbsp; &nbsp; &nbsp;5&#45; Set the password for ossec-wui</b></p>
+
+<p><b>&nbsp; &nbsp; &nbsp; &nbsp; a-Create the htaccess file</b></p>
+
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># htpasswd -c /var/www/html/ossec-wui/passwords &lt;your user name&gt;</pre>
+		</div>
+</div></div>
+<p>htpasswd will ask you to enter your password twice.</p>
+
+<p><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;b-Configure the httpd.conf file&nbsp;</b></p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false"># sudo vi /etc/httpd/conf/httpd.conf</pre>
+		</div>
+</div></div>
+<p>Look for &lt;/Directory in the file and add the following with your user name&nbsp;</p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">&lt;Directory "/var/www/html/ossec-wui"&gt;
+        	AuthType Basic
+       	 	AuthName "Restricted Files"
+        	# (Following line optional)
+        	AuthBasicProvider file
+        	AuthUserFile "/var/www/html/ossec-wui/passwords"
+        	Require user &lt;your user name &gt;	&lt;/Directory&gt;</pre>
+		</div>
+</div></div>
+<p><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;c-Restart Apache</b></p>
+
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">#sudo service httpd restart </pre>
+		</div>
+</div></div>
+    </body>
+</html>
