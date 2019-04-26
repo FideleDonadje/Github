@@ -24,18 +24,6 @@ public class WordLengths
         // initialise instance variables
         x = 0;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
     
     public void countWordlengths(FileResource resource, int []counts)
     {
@@ -55,6 +43,15 @@ public class WordLengths
                 }
             }
     }
+    public int indexOfMax(int[] values){
+        int maxIndex=0;
+        for(int k=0; k<values.length;k++){
+            if(values[k]>values[maxIndex]){
+               maxIndex=k;
+            }
+        }
+        return maxIndex;
+    }
     
     public void testCountWordLengths()
     {
@@ -67,6 +64,7 @@ public class WordLengths
            }
         }
         
+        System.out.println("There most common word length is  " + indexOfMax(counts));
     }
 }
 

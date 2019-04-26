@@ -6,7 +6,7 @@
  * @version (a version number or a date)
  */
 
-
+import edu.duke.*;
 public class CaesarBreaker
 {
     // instance variables - replace the example below with your own
@@ -55,6 +55,29 @@ public class CaesarBreaker
         String message = cc.encrypt(encrypted, 26 - key);
     }
     
+    public String decryptTwoKeys(String encrypted){
+        CaesarCipher cc = new CaesarCipher();
+        String firstHalf= halfOfString(encrypted, 0);
+        String secondHalf= halfOfString(encrypted, 1);
+        System.out.println(firstHalf);
+        System.out.println(secondHalf);
+        int maxDex1= getKey(firstHalf);
+        int maxDex2= getKey(secondHalf);
+        int dkey1 = maxDex1 -4;
+        int dkey2 = maxDex2 -4;
+        if (maxDex1 < 4){
+            dkey1 = 26 - (4-maxDex1);
+        }
+        if (maxDex2 < 4){
+            dkey2 = 26 - (4-maxDex2);
+        }
+        System.out.println("The first key is : " + dkey1);
+        System.out.println("The second key is : " + dkey2);
+        String decrypted = cc.encryptTwoKeys(encrypted,26-dkey1, 26-dkey2);
+        return decrypted;
+        
+    }
+    
     public String halfOfString(String message, int start){
         String halfMessage="";
         for (int k=start; k < message.length(); k=k+2){
@@ -70,9 +93,22 @@ public class CaesarBreaker
     }
     
     public void testDecryption(){
-    
+        String encrypted = "Top ncmy qkff vi vguv vbg ycpx";
+        
+        CaesarCipher cc = new CaesarCipher();
+        String decrypted = cc.encryptTwoKeys(encrypted,24, 6);
+        FileResource resource = new FileResource();
+        String file = resource.asString();
+        System.out.println("The decrypted message is : " + decryptTwoKeys(file));
+        System.out.println(decrypted);
+        encrypted = "Akag tjw Xibhr awoa aoee xakex znxag xwko";
+        System.out.println("The decrypted message is : " + decryptTwoKeys(encrypted));
+        
+  
+        }
+        
     }
     
-}
+
 
 
